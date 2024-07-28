@@ -30,9 +30,14 @@ public class Main {
         System.out.println("Enter your password: ");
         String password=scanner.nextLine();
 
-
-
-
+        if(username.equals("dilan") && password.equals("1234")) {
+            System.out.println("Dilan's account was logged in");
+        } else if (username.equals("aliwert") && password.equals("5678")) {
+            System.out.println("Ali Mert's account was logged in");
+        }
+        else {
+            System.out.println("Username or Password wrong, please check it!");
+        }
 
 
     }
