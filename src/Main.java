@@ -5,6 +5,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+
+        String transactionOptions = "If you want see the balance please press 1" +
+                " for Withdrawal press 2" +
+                " for Transfer money press 3" +
+                " for Logout press q";
+
         Scanner scanner = new Scanner(System.in);
 
 
@@ -32,8 +38,43 @@ public class Main {
 
         if(username.equals("dilan") && password.equals("1234")) {
             System.out.println("Dilan's account was logged in");
+            System.out.println(transactionOptions);
+            System.out.println("Please select a choose!");
+            String choose = scanner.nextLine();
+            switch (choose) {
+                case "1":
+                    System.out.println("Your Balance: " + dilanBalance);
+                    break;
+                case "2" :
+                    System.out.println("Enter Amount: ");
+                    int amount= scanner.nextInt();
+                    if(dilanBalance>=amount) {
+                        dilanBalance-=amount;
+                        System.out.println("Remaining Amount: " + " "+ dilanBalance);
+                    }else {
+                        System.out.println("You can't withdraw money");
+                    }
+                    break;
+                case  "3":
+                    System.out.println("How much do you want to deposit?");
+                    int depositAmount= scanner.nextInt();
+                    if(depositAmount<=dilanBalance) {
+                        System.out.println("Enter IBAN: ");
+                        scanner.nextLine(); //for bug extra nextLine
+                        String depositIBAN = scanner.nextLine();
+                        if (depositIBAN.equals(alimertIBAN)) {
+                            System.out.println("The money was sent to"+" " + alimertUser);
+                            dilanBalance-=depositAmount;
+                            alimertBalance+=depositAmount;
+
+                            System.out.println("Your balance after the deposit: " + " "  + dilanBalance);
+                        }
+                    }
+                    break;
+            }
         } else if (username.equals("aliwert") && password.equals("5678")) {
             System.out.println("Ali Mert's account was logged in");
+            System.out.println(transactionOptions);
         }
         else {
             System.out.println("Username or Password wrong, please check it!");
